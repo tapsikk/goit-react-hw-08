@@ -1,0 +1,18 @@
+.SearchBox{
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: 15px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.SearchBox input {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.label {
+	margin-bottom: 10px;
+}

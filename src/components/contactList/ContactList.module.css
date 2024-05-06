@@ -1,0 +1,6 @@
+.ulContact {
+  display: flex;
+  flex-wrap: wrap;
+  width: auto;
+  gap: 15px;
+}

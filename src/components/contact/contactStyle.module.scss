@@ -1,0 +1,19 @@
+li {
+  list-style-type: none;
+  border: 2px solid rgb(255, 255, 255);
+  padding: 10px;
+  border-radius: 5%;
+}
+
+.tel {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+}
+.nameLi{
+  display: flex;
+  align-items: center;  
+}
+.userIcon {
+  margin-right: 0.5rem; /* Добавьте необходимое расстояние между иконкой и текстом */
+}
