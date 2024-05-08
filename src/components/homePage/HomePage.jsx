@@ -3,17 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addContact,
   deleteContact,
-} from "../../redux/contactsOps";
-import { selectFilteredContacts } from "../../redux/contactsSlice"
-import { selectFilterName, changeFilter } from "../../redux/filtersSlice";
+} from "../../redux/contacts/operations";
+import { selectFilteredContacts } from "../../redux/contacts/selectors"
+import { selectFilterName } from "../../redux/filters/selectors";
+import { changeFilter } from "../../redux/filters/slice"
 import ContactForm from "../contactForm/ContactForm";
 import ContactList from "../contactList/ContactList";
 import SearchBox from "../searchBox/SearchBox";
+import AuthNav  from '../AuthNav/AuthNav';
+
 
 function HomePage() {
   const filteredContacts = useSelector(selectFilteredContacts);
   const filterName = useSelector(selectFilterName);
   const dispatch = useDispatch();
+
 
   const addContacts = (newContact) => {
     dispatch(addContact(newContact));
@@ -34,12 +38,13 @@ function HomePage() {
       <SearchBox value={filterName} onFilter={(value) => dispatch(changeFilter(value))} />
       {filteredContacts.length !== 0 ? (
         <ContactList
-          searchContact={filteredContacts} // Передаем filteredContacts вместо searchContact
+          searchContact={filteredContacts}
           deleteContacts={deleteContacts}
         />
       ) : filterName.trim() !== "" ? (
         <p style={{ textAlign: "center" }}>Not found!</p>
       ) : null}
+     <AuthNav />
     </>
   );
 }
