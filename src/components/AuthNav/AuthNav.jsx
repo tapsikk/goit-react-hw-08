@@ -13,4 +13,5 @@ const AuthNav = () => {
     </div>
   );  
 };
-export default AuthNav;
+
+export default AuthNav; 

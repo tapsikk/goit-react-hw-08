@@ -1,9 +1,11 @@
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../redux/auth/operations';
+import { useNavigate } from 'react-router-dom'; 
 import css from './LoginForm.module.css';
 
-export const LoginForm = () => {
+const LoginForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate(); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,6 +20,7 @@ export const LoginForm = () => {
       .unwrap()
       .then(() => {
         console.log('login success');
+        // navigate('/home');
       })
       .catch(() => {
         console.log('login error');
@@ -40,3 +43,5 @@ export const LoginForm = () => {
     </form>
   );
 };
+
+export default LoginForm;

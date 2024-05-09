@@ -10,7 +10,7 @@ import { changeFilter } from "../../redux/filters/slice"
 import ContactForm from "../contactForm/ContactForm";
 import ContactList from "../contactList/ContactList";
 import SearchBox from "../searchBox/SearchBox";
-import AuthNav  from '../AuthNav/AuthNav';
+
 
 
 function HomePage() {
@@ -44,7 +44,6 @@ function HomePage() {
       ) : filterName.trim() !== "" ? (
         <p style={{ textAlign: "center" }}>Not found!</p>
       ) : null}
-     <AuthNav />
     </>
   );
 }
