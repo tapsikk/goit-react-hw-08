@@ -10,13 +10,18 @@ import { changeFilter } from "../../../src/redux/filters/slice"
 import ContactForm from "../../../src/components/contactForm/ContactForm";
 import ContactList from "../../components/contactList/ContactList";
 import SearchBox from "../../components/searchBox/SearchBox";
+import { fetchContacts } from '../../redux/contacts/operations';
 
 
+const ContactsPage = () => {
+  const dispatch = useDispatch();
 
-function ContactsPage() {
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
   const filteredContacts = useSelector(selectFilteredContacts);
   const filterName = useSelector(selectFilterName);
-  const dispatch = useDispatch();
 
 
   const addContacts = (newContact) => {

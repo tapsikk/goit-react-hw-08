@@ -1,52 +1,46 @@
-import { lazy, useEffect } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, Route, Routes, } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { RestrictedRoute } from './RestrictedRoute';
-import { fetchContacts } from './redux/contacts/operations';
-// import HomePage from './components/homePage/HomePage';
+import { refreshUser } from './redux/auth/operations';
 import { Layout } from './components/Layout';
-import { selectIsLoggedIn } from './redux/auth/selectors';
-import style from './App.module.css'
+import { selectIsLoggedIn, selectIsRefreshing } from './redux/auth/selectors';
 
 const ContactsPage = lazy(() => import('./pages/ContactsPage/ContactsPage'));
-const MainPage = lazy(() => import('./pages/mainPage/mainPage'))
+const MainPage = lazy(() => import('./pages/mainPage/mainPage'));
 const RegisterPage = lazy(() => import('./pages/RegistrationPage/RegisterForm'));
 const LoginPage = lazy(() => import('./pages/loginPage/LoginForm'));
-
-// const TasksPage = lazy(() => import('../components/TasksPage/TasksPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isRefreshing = useSelector(selectIsRefreshing);
+
   useEffect(() => {
-    dispatch(fetchContacts());
+    const persistedToken = localStorage.getItem('token');
+    if (persistedToken) {
+      dispatch(refreshUser());
+    }
   }, [dispatch]);
 
   return (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        {/* <PrivateRoute path="/home" element={<HomePage />} /> */}
-        <Route
-          path="/home"
-          element={
-           isLoggedIn ? <ContactsPage/> : <Navigate to={'/'} />
-          }
-        />
-        <Route
-          path="/register"
-          element={
-            <RestrictedRoute redirectTo="/home" component={<RegisterPage />} />
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <RestrictedRoute redirectTo="/home" component={<LoginPage />} />
-          }
-        />
-      </Routes>
-    </Layout>
+    <div>
+      {isRefreshing ? (
+        <div>Loading...</div>
+      ) : (
+        <Suspense fallback={<div>Loading...</div>}>
+          <Layout isLoggedIn={isLoggedIn}>
+            <Routes>
+              <Route path="/" element={<MainPage />} />
+              <Route path="/home" element={isLoggedIn ? <ContactsPage /> : <Navigate to="/" />} />
+              <Route path="/register" element={<RestrictedRoute redirectTo="/home" component={<RegisterPage />} />} />
+              <Route path="/login" element={<RestrictedRoute redirectTo="/home" component={<LoginPage />} />} />
+              <Route path="*" element={isLoggedIn ? <Navigate to="/home" /> : <Navigate to="/login" />} />
+            </Routes>
+          </Layout>
+        </Suspense>
+      )}
+    </div>
   );
 };
 
