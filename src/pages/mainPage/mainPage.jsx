@@ -1,5 +1,5 @@
 // import DocumentTitle from '../../DocumentTitle';
-
+import style from './mainPage'
 const styles = {
   container: {
     minHeight: 'calc(100vh - 50px)',
