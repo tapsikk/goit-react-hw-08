@@ -6,11 +6,12 @@ import { fetchContacts } from './redux/contacts/operations';
 // import HomePage from './components/homePage/HomePage';
 import { Layout } from './components/Layout';
 import { selectIsLoggedIn } from './redux/auth/selectors';
+import style from './App.module.css'
 
-const ContactsPage = lazy(() => import('./pages'));
-const MainPage = lazy(() => import('./components/mainPage/mainPage'))
-const RegisterPage = lazy(() => import('./pages/homePage/RegisterForm'));
-const LoginPage = lazy(() => import('./pages/homePage/loginPage/LoginForm'));
+const ContactsPage = lazy(() => import('./pages/ContactsPage/ContactsPage'));
+const MainPage = lazy(() => import('./pages/mainPage/mainPage'))
+const RegisterPage = lazy(() => import('./pages/RegistrationPage/RegisterForm'));
+const LoginPage = lazy(() => import('./pages/loginPage/LoginForm'));
 
 // const TasksPage = lazy(() => import('../components/TasksPage/TasksPage'));
 
@@ -29,7 +30,7 @@ export const App = () => {
         <Route
           path="/home"
           element={
-           isLoggedIn ? <HomePage/> : <Navigate to={'/'} />
+           isLoggedIn ? <ContactsPage/> : <Navigate to={'/'} />
           }
         />
         <Route

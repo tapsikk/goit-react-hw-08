@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addContact,
   deleteContact,
-} from "../../../redux/contacts/operations";
-import { selectFilteredContacts } from "../../../redux/contacts/selectors"
-import { selectFilterName } from "../../../redux/filters/selectors";
-import { changeFilter } from "../../../redux/filters/slice"
-import ContactForm from "../../../components/contactForm/ContactForm";
-import ContactList from "../../../components/contactList/ContactList";
-import SearchBox from "../../../components/searchBox/SearchBox";
+} from "../../../src/redux/contacts/operations";
+import { selectFilteredContacts } from "../../../src/redux/contacts/selectors"
+import selectFilterName from "../../../src/redux/filters/selectors";
+import { changeFilter } from "../../../src/redux/filters/slice"
+import ContactForm from "../../../src/components/contactForm/ContactForm";
+import ContactList from "../../components/contactList/ContactList";
+import SearchBox from "../../components/searchBox/SearchBox";
 
 
 
