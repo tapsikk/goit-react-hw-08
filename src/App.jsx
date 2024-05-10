@@ -7,10 +7,10 @@ import { fetchContacts } from './redux/contacts/operations';
 import { Layout } from './components/Layout';
 import { selectIsLoggedIn } from './redux/auth/selectors';
 
-const HomePage = lazy(() => import('./components/homePage/HomePage'));
+const ContactsPage = lazy(() => import('./pages'));
 const MainPage = lazy(() => import('./components/mainPage/mainPage'))
-const RegisterPage = lazy(() => import('./components/registerForm/RegisterForm'));
-const LoginPage = lazy(() => import('./components/loginForm/LoginForm'));
+const RegisterPage = lazy(() => import('./pages/homePage/RegisterForm'));
+const LoginPage = lazy(() => import('./pages/homePage/loginPage/LoginForm'));
 
 // const TasksPage = lazy(() => import('../components/TasksPage/TasksPage'));
 

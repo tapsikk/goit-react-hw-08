@@ -13,7 +13,7 @@ import SearchBox from "../../../components/searchBox/SearchBox";
 
 
 
-function HomePage() {
+function ContactsPage() {
   const filteredContacts = useSelector(selectFilteredContacts);
   const filterName = useSelector(selectFilterName);
   const dispatch = useDispatch();
@@ -48,4 +48,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default ContactsPage;
