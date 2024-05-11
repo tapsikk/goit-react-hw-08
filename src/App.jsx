@@ -8,7 +8,7 @@ import { selectIsLoggedIn, selectIsRefreshing } from './redux/auth/selectors';
 
 const ContactsPage = lazy(() => import('./pages/ContactsPage/ContactsPage'));
 const MainPage = lazy(() => import('./pages/mainPage/mainPage'));
-const RegisterPage = lazy(() => import('./pages/RegistrationPage/RegisterForm'));
+const RegisterPage = lazy(() => import('./pages/RegistrationPage/RegistrationForm'));
 const LoginPage = lazy(() => import('./pages/loginPage/LoginForm'));
 
 export const App = () => {
