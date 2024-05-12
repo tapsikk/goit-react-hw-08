@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect } from "react";
+import React, { Suspense, lazy, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { RestrictedRoute } from "./RestrictedRoute";
@@ -22,6 +22,7 @@ export const App = () => {
     const persistedToken = localStorage.getItem("token");
     if (persistedToken) {
       dispatch(refreshUser());
+      dispatch(selectIsLoggedIn(true));
     }
   }, [dispatch]);
 
